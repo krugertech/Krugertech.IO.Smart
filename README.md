@@ -4,7 +4,7 @@ A class library for the reading of HDD and SSD SMART registers.
 # Usage
 ```cs
 
-                var drives = SmartHelper.GetDrives();
+                var drives = Smart.GetDrives();
                 
                 foreach (var drive in drives)
                 {
@@ -13,12 +13,12 @@ A class library for the reading of HDD and SSD SMART registers.
                     Console.WriteLine("-----------------------------------------------------");
                     Console.WriteLine("");
 
-                    Console.WriteLine("ID                   Current  Worst  Threshold  Data  Status");
+                    Console.WriteLine("Attribute\t\t\tCurrent  Worst  Threshold  Data  Status");
                     foreach (var attr in drive.SmartAttributeAttributes)
                     {
                         if (attr.HasData)
-                            Console.WriteLine("{0}\t {1}\t {2}\t {3}\t " + attr.Data + " " + ((attr.IsOK) ? "OK" : "BAD"), "(" + attr.Register +")" + attr.Name, attr.Current, attr.Worst, attr.Threshold);
+                            Console.WriteLine("{0}\t {1}\t {2}\t {3}\t " + attr.Data + " " + ((attr.IsOK) ? "OK" : "BAD"), attr.Name, attr.Current, attr.Worst, attr.Threshold);
                     }
                     Console.WriteLine();
-                }
+                }     
 ```
