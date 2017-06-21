@@ -13,7 +13,7 @@ using System.Diagnostics;
 using System.Management;
 using System.Text;
 
-namespace Smart.Net
+namespace Simplified.IO
 {
     public sealed class WmiController
     {

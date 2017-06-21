@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Smart.Net
+namespace Simplified.IO
 {
 
     #region Smart

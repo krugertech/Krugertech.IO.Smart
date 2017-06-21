@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Smart.Net;
+using Simplified.IO;
 
-namespace Tests
+namespace Demo
 {
     class Program
     {
@@ -22,23 +18,21 @@ namespace Tests
                     Console.WriteLine("-----------------------------------------------------");
                     Console.WriteLine("");
 
-                    Console.WriteLine("ID                   Current  Worst  Threshold  Data  Status");
+                    Console.WriteLine("Attribute\t\t\tCurrent  Worst  Threshold  Data  Status");
                     foreach (var attr in drive.SmartAttributeAttributes)
                     {
                         if (attr.HasData)
-                            Console.WriteLine("{0}\t {1}\t {2}\t {3}\t " + attr.Data + " " + ((attr.IsOK) ? "OK" : "BAD"), "(" + attr.Register +")" + attr.Name, attr.Current, attr.Worst, attr.Threshold);
+                            Console.WriteLine("{0}\t {1}\t {2}\t {3}\t " + attr.Data + " " + ((attr.IsOK) ? "OK" : "BAD"), attr.Name, attr.Current, attr.Worst, attr.Threshold);
                     }
                     Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine();
-                }
-
-                Console.ReadLine();
+                }                
             }
             catch (Exception e)
             {
-                Console.WriteLine("An error occurred: " + e.Message);
+                Console.WriteLine("An error occurred: " + e.Message);                
             }
+
+            Console.ReadLine();
         }
     }
 }
