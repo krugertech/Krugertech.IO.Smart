@@ -6,7 +6,9 @@ namespace Demo
     class Program
     {
         static void Main(string[] args)
-        {            
+        {
+            Console.Title = "Demo of Simplified.IO.Smart class";
+                 
             try
             {                                
                 var drives = Smart.GetDrives();
