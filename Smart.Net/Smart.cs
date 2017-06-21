@@ -13,7 +13,7 @@ using System.Text;
 
 namespace Simplified.IO
 {
-    public static class SmartHelper
+    public static class Smart
     {
         public static DriveCollection GetDrives()
         {

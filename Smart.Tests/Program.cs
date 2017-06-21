@@ -9,7 +9,7 @@ namespace Demo
         {            
             try
             {                                
-                var drives = SmartHelper.GetDrives();
+                var drives = Smart.GetDrives();
                 
                 foreach (var drive in drives)
                 {

@@ -46,7 +46,7 @@
     <Compile Include="Objects.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource.cs" />
-    <Compile Include="SmartHelper.cs" />
+    <Compile Include="Smart.cs" />
     <Compile Include="WmiController.cs" />
   </ItemGroup>
   <ItemGroup>
