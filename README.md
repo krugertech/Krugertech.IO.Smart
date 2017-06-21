@@ -20,7 +20,5 @@ A class library for the reading of HDD and SSD SMART registers.
                             Console.WriteLine("{0}\t {1}\t {2}\t {3}\t " + attr.Data + " " + ((attr.IsOK) ? "OK" : "BAD"), "(" + attr.Register +")" + attr.Name, attr.Current, attr.Worst, attr.Threshold);
                     }
                     Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine();
                 }
 ```
