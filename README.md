@@ -22,3 +22,6 @@ A class library for the reading of HDD and SSD SMART registers.
       Console.WriteLine();
   }     
 ```
+
+
+![alt text](https://raw.githubusercontent.com/krugertech/SMART.Net/master/Exhibit.A.png)
