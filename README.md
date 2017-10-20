@@ -4,23 +4,24 @@ A class library for the reading of HDD and SSD SMART registers.
 # Usage
 ```cs
 
-  var drives = Smart.GetDrives();
+var drives = Smart.GetDrives();
+                
+                foreach (var drive in drives)
+                {
+                    Console.WriteLine("-----------------------------------------------------");
+                    Console.WriteLine($" DRIVE ({((drive.IsOK) ? "OK" : "BAD")}): {drive.Serial} - {drive.Model} - {drive.Type}");
+                    Console.WriteLine("-----------------------------------------------------");
+                    Console.WriteLine("");
 
-  foreach (var drive in drives)
-  {
-      Console.WriteLine("-----------------------------------------------------");
-      Console.WriteLine(" DRIVE ({0}): " + drive.Serial + " - " + drive.Model + " - " + drive.Type, ((drive.IsOK) ? "OK" : "BAD"));
-      Console.WriteLine("-----------------------------------------------------");
-      Console.WriteLine("");
-
-      Console.WriteLine("Attribute\t\t\tCurrent  Worst  Threshold  Data  Status");
-      foreach (var attr in drive.SmartAttributeAttributes)
-      {
-          if (attr.HasData)
-              Console.WriteLine("{0}\t {1}\t {2}\t {3}\t " + attr.Data + " " + ((attr.IsOK) ? "OK" : "BAD"), attr.Name, attr.Current, attr.Worst, attr.Threshold);
-      }
-      Console.WriteLine();
-  }     
+                    Console.WriteLine("Attribute\t\t\tCurrent  Worst  Threshold  Data  Status");
+                    int maxNameLen = drive.SmartAttributes.Max(s => s.Name.Length);
+                    foreach (var attr in drive.SmartAttributes)
+                    {
+                        if (attr.HasData)
+                            Console.WriteLine($"{attr.Name.PadRight(maxNameLen, ' ')} {attr.Current}\t {attr.Worst}\t {attr.Threshold}\t {attr.Data.ToString().PadRight(9, ' ')} {((attr.IsOK) ? "OK" : "BAD")}");
+                    }
+                    Console.WriteLine();
+                }                
 ```
 
 
