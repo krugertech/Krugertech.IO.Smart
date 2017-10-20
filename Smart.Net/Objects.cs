@@ -68,7 +68,7 @@ namespace Simplified.IO
     {
         public Drive()
         {
-            SmartAttributeAttributes = new SmartAttributeCollection();
+            SmartAttributes = new SmartAttributeCollection();
             DriveLetters = new List<string>();
         }
 
@@ -82,7 +82,7 @@ namespace Simplified.IO
         public string Model { get; set; }
         public string Type { get; set; }
         public string Serial { get; set; }
-        public SmartAttributeCollection SmartAttributeAttributes { get; set; }
+        public SmartAttributeCollection SmartAttributes { get; set; }
     }
 
     public class DriveCollection : List<Drive>

@@ -73,43 +73,12 @@ namespace Simplified.IO
 
                     #region Smart Registers
 
-                    drive.SmartAttributeAttributes.AddRange(Helper.GetSmartRegisters(Resource.SmartAttributes));
+                    drive.SmartAttributes.AddRange(Helper.GetSmartRegisters(Resource.SmartAttributes));
 
                     searcher.Query = new ObjectQuery(@"Select * from MSStorageDriver_FailurePredictData Where InstanceName like ""%"
                                                      + drive.PnpDeviceID.Replace("\\", "\\\\") + @"%""");
                     
-                    //foreach (ManagementObject data in searcher.Get())
-                    //{
-                    //    Byte[] bytes = (Byte[]) data.Properties["VendorSpecific"].Value;
-                    //    foreach (var attribute in drive.SmartAttributeAttributes)
-                    //    {
-                    //        try
-                    //        {
-                    //            int id = bytes[attribute.Register * 12 + 2];
 
-                    //            int flags = bytes[attribute.Register * 12 + 4]; // least significant status byte, +3 most significant byte, but not used so ignored.
-                    //            bool advisory = (flags & 0x1) == 0x0;
-                    //            bool failureImminent = (flags & 0x1) == 0x1;
-                    //            bool onlineDataCollection = (flags & 0x2) == 0x2;
-
-                    //            int value = bytes[attribute.Register * 12 + 5];
-                    //            int worst = bytes[attribute.Register * 12 + 6];
-                    //            int vendordata = BitConverter.ToInt32(bytes, attribute.Register * 12 + 7);
-                    //            if (id == 0) continue;
-
-                    //            attribute.Current = value;
-                    //            attribute.Worst = worst;
-                    //            attribute.Data = vendordata;
-                    //            attribute.IsOK = failureImminent == false;
-
-                    //            //Console.WriteLine("{0}\t {1}\t {2}\t {3}\t " + attribute.Data + " " + ((attribute.IsOK) ? "OK" : ""), attribute.Name, attribute.Current, attribute.Worst, attribute.Threshold);
-                    //        }
-                    //        catch (Exception ex)
-                    //        {
-                    //            Debug.WriteLine($"Error resolving attribute data [{attribute.Name}].");
-                    //        }
-                    //    }
-                    //}
                                         
                     foreach (ManagementObject data in searcher.Get())
                     {
@@ -130,7 +99,7 @@ namespace Simplified.IO
                                 int vendordata = BitConverter.ToInt32(bytes, i * 12 + 7);
                                 if (id == 0) continue;
 
-                                var attr = drive.SmartAttributeAttributes.GetAttribute(id);
+                                var attr = drive.SmartAttributes.GetAttribute(id);
                                 attr.Current = value;
                                 attr.Worst = worst;
                                 attr.Data = vendordata;
@@ -156,7 +125,7 @@ namespace Simplified.IO
                                 int thresh = bytes[i * 12 + 3];
                                 if (id == 0) continue;
 
-                                var attr = drive.SmartAttributeAttributes.GetAttribute(id);
+                                var attr = drive.SmartAttributes.GetAttribute(id);
                                 attr.Threshold = thresh;
 
                                 //Console.WriteLine("{0}\t {1}\t {2}\t {3}\t " + attr.Data + " " + ((attr.IsOK) ? "OK" : ""), attr.Name, attr.Current, attr.Worst, attr.Threshold);
@@ -167,32 +136,6 @@ namespace Simplified.IO
                             }
                         }
                     }
-
-                    //searcher.Query = new ObjectQuery(@"Select * from MSStorageDriver_FailurePredictThresholds Where InstanceName like ""%"
-                    //                                 + drive.PnpDeviceID.Replace("\\", "\\\\") + @"%""");
-                    //foreach (ManagementObject data in searcher.Get())
-                    //{
-                    //    Byte[] bytes = (Byte[])data.Properties["VendorSpecific"].Value;
-
-                    //    foreach (var attribute in drive.SmartAttributeAttributes)
-                    //    {
-                    //        try
-                    //        {
-                    //            int id = bytes[attribute.Register * 12 + 2];
-                    //            int thresh = bytes[attribute.Register * 12 + 3];
-                    //            if (id == 0) continue;
-
-                    //            var attr = drive.SmartAttributeAttributes.GetAttribute(id);
-                    //            attr.Threshold = thresh;
-
-                    //            //Console.WriteLine("{0}\t {1}\t {2}\t {3}\t " + attribute.Data + " " + ((attribute.IsOK) ? "OK" : ""), attribute.Name, attribute.Current, attribute.Worst, attribute.Threshold);
-                    //        }
-                    //        catch (Exception ex)
-                    //        {
-                    //            Debug.WriteLine($"Error resolving attribute data [{attribute.Name}].");
-                    //        }
-                    //    }
-                    //}
 
                     #endregion
 
