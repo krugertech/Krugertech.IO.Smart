@@ -32,15 +32,22 @@ namespace Simplified.IO
         {
             var collection = new SmartAttributeCollection();
 
-            var splitOnCRLF = Resource.SmartAttributes.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-            foreach (var line in splitOnCRLF)
-            {
-                var splitLineOnComma = line.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
-                string register = splitLineOnComma[0].Trim();
-                string attributeName = splitLineOnComma[1].Trim();
+            try 
+	        {	        		        
+                var splitOnCRLF = Resource.SmartAttributes.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                foreach (var line in splitOnCRLF)
+                {
+                    var splitLineOnComma = line.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
+                    string register = splitLineOnComma[0].Trim();
+                    string attributeName = splitLineOnComma[1].Trim();
 
-                collection.Add(new SmartAttribute (Helper.ConvertStringHexToInt(register), attributeName));
-            }
+                    collection.Add(new SmartAttribute (Helper.ConvertStringHexToInt(register), attributeName));
+                }
+	        }
+	        catch (Exception ex)
+	        {
+		        throw new Exception("GetSmartRegisters failed with error " + ex);
+	        }
 
             return collection;
         }

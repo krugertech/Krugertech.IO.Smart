@@ -21,7 +21,8 @@ namespace Simplified.IO
         {
             DriveCollection drives = new DriveCollection();
             try
-            {                                
+            {      
+                // TODO: 2017-12-19 - Refactor regions into separate methods.
                 foreach (var device in new ManagementObjectSearcher(@"SELECT * FROM Win32_DiskDrive").Get())
                 {
                     #region Drive Info
@@ -77,9 +78,7 @@ namespace Simplified.IO
 
                     searcher.Query = new ObjectQuery(@"Select * from MSStorageDriver_FailurePredictData Where InstanceName like ""%"
                                                      + drive.PnpDeviceID.Replace("\\", "\\\\") + @"%""");
-                    
-
-                                        
+                                                            
                     foreach (ManagementObject data in searcher.Get())
                     {
                         Byte[] bytes = (Byte[])data.Properties["VendorSpecific"].Value;
@@ -105,9 +104,10 @@ namespace Simplified.IO
                                 attr.Data = vendordata;
                                 attr.IsOK = failureImminent == false;
                             }
-                            catch
+                            catch(Exception ex)
                             {
                                 // given key does not exist in attribute collection (attribute not in the dictionary of attributes)
+                                Debug.WriteLine(ex.Message);
                             }
                         }                        
                     }
@@ -128,11 +128,13 @@ namespace Simplified.IO
                                 var attr = drive.SmartAttributes.GetAttribute(id);
                                 attr.Threshold = thresh;
 
-                                //Console.WriteLine("{0}\t {1}\t {2}\t {3}\t " + attr.Data + " " + ((attr.IsOK) ? "OK" : ""), attr.Name, attr.Current, attr.Worst, attr.Threshold);
+                                // Debug
+                                // Console.WriteLine("{0}\t {1}\t {2}\t {3}\t " + attr.Data + " " + ((attr.IsOK) ? "OK" : ""), attr.Name, attr.Current, attr.Worst, attr.Threshold);
                             }
-                            catch
+                            catch(Exception ex)
                             {
                                 // given key does not exist in attribute collection (attribute not in the dictionary of attributes)
+                                Debug.WriteLine(ex.Message);
                             }
                         }
                     }

@@ -13,7 +13,6 @@ using System.Text;
 
 namespace Simplified.IO
 {
-
     #region Smart
     public sealed class SmartAttribute
     {        
@@ -64,6 +63,7 @@ namespace Simplified.IO
     }
     #endregion
     
+    #region Drive
     public class Drive
     {
         public Drive()
@@ -89,4 +89,5 @@ namespace Simplified.IO
     {
         
     }
+    #endregion
 }

@@ -73,9 +73,9 @@ namespace Simplified.IO
 0xE8,Available reserved space
 0xE9,Media wearout indicator
 0xF0,Head flying hours
-0xF1,Lift time writes
-0xF2,Lift time reads
-0xF9,Lift time writes (NAND)
+0xF1,Life time writes
+0xF2,Life time reads
+0xF9,Life time writes (NAND)
 0xFA,Read error retry rate";
     }
 }
