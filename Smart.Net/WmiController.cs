@@ -99,10 +99,13 @@ namespace Simplified.IO
                                 if (id == 0) continue;
 
                                 var attr = drive.SmartAttributes.GetAttribute(id);
-                                attr.Current = value;
-                                attr.Worst = worst;
-                                attr.Data = vendordata;
-                                attr.IsOK = failureImminent == false;
+                                if (attr != null)
+                                {
+                                    attr.Current = value;
+                                    attr.Worst = worst;
+                                    attr.Data = vendordata;
+                                    attr.IsOK = failureImminent == false;
+                                }
                             }
                             catch(Exception ex)
                             {
@@ -126,10 +129,13 @@ namespace Simplified.IO
                                 if (id == 0) continue;
 
                                 var attr = drive.SmartAttributes.GetAttribute(id);
-                                attr.Threshold = thresh;
+                                if (attr != null)
+                                {
+                                    attr.Threshold = thresh;
 
-                                // Debug
-                                // Console.WriteLine("{0}\t {1}\t {2}\t {3}\t " + attr.Data + " " + ((attr.IsOK) ? "OK" : ""), attr.Name, attr.Current, attr.Worst, attr.Threshold);
+                                    // Debug
+                                    // Console.WriteLine("{0}\t {1}\t {2}\t {3}\t " + attr.Data + " " + ((attr.IsOK) ? "OK" : ""), attr.Name, attr.Current, attr.Worst, attr.Threshold);
+                                }
                             }
                             catch(Exception ex)
                             {
