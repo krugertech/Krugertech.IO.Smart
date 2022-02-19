@@ -6,6 +6,12 @@ A class library for the reading of HDD and SSD SMART registers.
 
 Note: Formely known as SMART.NET
 
+## Breaking Changes 
+
+1. Upgraded to .NET Standard 2.0, so older .NET Framework versions 4.6.1+ are supported
+2. Name space changed from Simpliefied.IO to Krugertech.IO.Smart
+3. Entry point class changed From "Smart" to "SmartDrive"
+
 ## Usage
 ```cs
 using Krugertech.IO.Smart;
