@@ -52,7 +52,7 @@ foreach (Drive drive in drives)
 
 | Platform | .NET runtime version | Support                         
 |-----------------------|----------------------|-----------------------------------------
-| Windows      | .NET Framework 4.5+ | :heavy_check_mark: 
+| Windows      | .NET Framework 4.6.1+ | :heavy_check_mark: 
 | Windows      | .NET Core 2.1+      | :heavy_check_mark:                      
 | Linux        | .NET Core           | :exclamation:  Not Supported         
 
