@@ -4,7 +4,7 @@
 
 A class library for the reading of HDD and SSD SMART registers.
 
-Note: Formely known as SMART.NET
+Note: Formerly known as SMART.NET
 
 ## Breaking Changes 
 
