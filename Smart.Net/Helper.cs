@@ -25,7 +25,7 @@
 
 using System;
 
-namespace Krugertech.IO
+namespace Krugertech.IO.Smart
 {
     public sealed class Helper
     {

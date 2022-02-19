@@ -8,7 +8,8 @@ Note: Formely known as SMART.NET
 
 ## Usage
 ```cs
-var drives = Krugertech.IO.SmartDrive.GetDrives();
+using Krugertech.IO.Smart;
+var drives = SmartDrive.GetDrives();
 
 foreach (Drive drive in drives)
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Krugertech.IO;
+using Krugertech.IO.Smart;
 
 namespace Demo
 {

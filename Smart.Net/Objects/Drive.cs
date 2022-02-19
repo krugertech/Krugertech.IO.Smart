@@ -27,7 +27,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Krugertech.IO
+namespace Krugertech.IO.Smart
 {
     #region Drive
     public class Drive

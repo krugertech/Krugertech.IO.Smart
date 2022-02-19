@@ -25,7 +25,7 @@
 
 using Krugertech.IO.Smart.Controllers;
 
-namespace Krugertech.IO
+namespace Krugertech.IO.Smart
 {
     public static class SmartDrive
     {

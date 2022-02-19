@@ -27,7 +27,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Krugertech.IO
+namespace Krugertech.IO.Smart
 {
     #region Smart
     public sealed class SmartAttribute
@@ -77,5 +77,4 @@ namespace Krugertech.IO
         }
     }
     #endregion
-
 }
