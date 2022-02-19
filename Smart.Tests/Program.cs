@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Simplified.IO;
+using Krugertech.IO;
 
 namespace Demo
 {
@@ -8,32 +8,37 @@ namespace Demo
     {
         static void Main(string[] args)
         {
-            Console.Title = "Demo of Simplified.IO.Smart class";
-                 
+            Console.Title = "Demo of Krugertech.IO.Smart";
+
             try
-            {                                
-                var drives = Smart.GetDrives();
-                
-                foreach (var drive in drives)
+            {
+                var drives = SmartDrive.GetDrives();
+
+                foreach (Drive drive in drives)
                 {
+                    string driveStatus = (!drive.IsSupported)? "NOT SUPPORTED" : ((drive.IsOK) ? "OK" : "BAD");
+
                     Console.WriteLine("-----------------------------------------------------");
-                    Console.WriteLine($" DRIVE ({((drive.IsOK) ? "OK" : "BAD")}): {drive.Serial} - {drive.Model} - {drive.Type}");
+                    Console.WriteLine($" DRIVE ({driveStatus}): {drive.Serial} - {drive.Model} - {drive.Type}");
                     Console.WriteLine("-----------------------------------------------------");
                     Console.WriteLine("");
 
-                    Console.WriteLine("Attribute\t\t\tCurrent  Worst  Threshold  Data  Status");
-                    int maxNameLen = drive.SmartAttributes.Max(s => s.Name.Length);
-                    foreach (var attr in drive.SmartAttributes)
+                    if (drive.IsSupported)
                     {
-                        if (attr.HasData)
-                            Console.WriteLine($"{attr.Name.PadRight(maxNameLen, ' ')} {attr.Current}\t {attr.Worst}\t {attr.Threshold}\t {attr.Data.ToString().PadRight(9, ' ')} {((attr.IsOK) ? "OK" : "BAD")}");
+                        Console.WriteLine("Attribute\t\t\tCurrent  Worst  Threshold  Data  Status");
+                        int maxNameLen = drive.SmartAttributes.Max(s => s.Name.Length);
+                        foreach (var attr in drive.SmartAttributes)
+                        {
+                            if (attr.HasData)
+                                Console.WriteLine($"{attr.Name.PadRight(maxNameLen, ' ')} {attr.Current}\t {attr.Worst}\t {attr.Threshold}\t {attr.Data.ToString().PadRight(9, ' ')} {((attr.IsOK) ? "OK" : "BAD")}");
+                        }
                     }
                     Console.WriteLine();
-                }                
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine("An error occurred: " + e.Message);                
+                Console.WriteLine("An error occurred: " + e.Message);
             }
 
             Console.ReadLine();

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smart.Net", "Smart.Net\Smart.Net.csproj", "{6BD2604A-5FC9-4ED0-8C9A-563892FA2C9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Krugertech.IO.Smart", "Smart.Net\Krugertech.IO.Smart.csproj", "{6BD2604A-5FC9-4ED0-8C9A-563892FA2C9C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Smart.Tests\Demo.csproj", "{E10C3C1E-0B13-4DA0-A398-4EEFA00A9834}"
 EndProject
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7EAA6B25-E761-468D-9DB2-C7A6F14B47A4}
 	EndGlobalSection
 EndGlobal

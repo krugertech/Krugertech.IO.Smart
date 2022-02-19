@@ -1,33 +1,61 @@
-# SMART.Net
+# Krugertech.IO.Smart
+
+[![NuGet version (Krugertech.IO.Smart)](https://badge.fury.io/nu/Krugertech.IO.Smart.svg)](https://badge.fury.io/nu/Krugertech.IO.Smart)
+
 A class library for the reading of HDD and SSD SMART registers.
 
-# Usage
-```cs
+Note: Formely known as SMART.NET
 
-var drives = Smart.GetDrives();
-                
-foreach (var drive in drives)
+## Usage
+```cs
+var drives = Krugertech.IO.SmartDrive.GetDrives();
+
+foreach (Drive drive in drives)
 {
+    string driveStatus = (!drive.IsSupported)? "NOT SUPPORTED" : ((drive.IsOK) ? "OK" : "BAD");
+
     Console.WriteLine("-----------------------------------------------------");
-    Console.WriteLine($" DRIVE ({((drive.IsOK) ? "OK" : "BAD")}): {drive.Serial} - {drive.Model} - {drive.Type}");
+    Console.WriteLine($" DRIVE ({driveStatus}): {drive.Serial} - {drive.Model} - {drive.Type}");
     Console.WriteLine("-----------------------------------------------------");
     Console.WriteLine("");
 
-    Console.WriteLine("Attribute\t\t\tCurrent  Worst  Threshold  Data  Status");
-    int maxNameLen = drive.SmartAttributes.Max(s => s.Name.Length);
-    foreach (var attr in drive.SmartAttributes)
+    if (drive.IsSupported)
     {
-        if (attr.HasData)
-            Console.WriteLine($"{attr.Name.PadRight(maxNameLen, ' ')} {attr.Current}\t {attr.Worst}\t {attr.Threshold}\t {attr.Data.ToString().PadRight(9, ' ')} {((attr.IsOK) ? "OK" : "BAD")}");
+        Console.WriteLine("Attribute\t\t\tCurrent  Worst  Threshold  Data  Status");
+        int maxNameLen = drive.SmartAttributes.Max(s => s.Name.Length);
+        foreach (var attr in drive.SmartAttributes)
+        {
+            if (attr.HasData)
+                Console.WriteLine($"{attr.Name.PadRight(maxNameLen, ' ')} {attr.Current}\t {attr.Worst}\t {attr.Threshold}\t {attr.Data.ToString().PadRight(9, ' ')} {((attr.IsOK) ? "OK" : "BAD")}");
+        }
     }
     Console.WriteLine();
-}                
-```
-
+}               
+```       
 
 ![alt text](https://raw.githubusercontent.com/krugertech/SMART.Net/master/Exhibit.A.png)
 
-# License
+## Supported Drives
+
+| Interface | Support                         
+|-----------------------|---------------------
+| IDE       | :heavy_check_mark: 
+| SATA      | :heavy_check_mark: 
+| SCSI      | :heavy_check_mark:
+| NVME      | :exclamation:
+| M2        | :exclamation:
+| USB       | :exclamation:
+
+
+## Runtime Compatibility
+
+| Platform | .NET runtime version | Support                         
+|-----------------------|----------------------|-----------------------------------------
+| Windows      | .NET Framework 4.5+ | :heavy_check_mark: 
+| Windows      | .NET Core 2.1+      | :heavy_check_mark:                      
+| Linux        | .NET Core           | :exclamation:  Not Supported         
+
+## License
 Copyright (c) 2017 Llewellyn Kruger
 
 MIT License
