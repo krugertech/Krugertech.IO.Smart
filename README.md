@@ -8,8 +8,8 @@ Note: Formerly known as SMART.NET
 
 ## Breaking Changes 
 
-1. Upgraded to .NET Standard 2.0, so older .NET Framework versions 4.6.1+ are supported
-2. Name space changed from Simpliefied.IO to Krugertech.IO.Smart
+1. Upgraded to .NET Standard 2.0, .NET Framework version 4.6.1+ are still supported
+2. Name space changed from Simplified.IO to Krugertech.IO.Smart
 3. Entry point class changed From "Smart" to "SmartDrive"
 
 ## Usage
