@@ -49,7 +49,6 @@ namespace Krugertech.IO.Smart.Controllers
                         Model = device["Model"]?.ToString().Trim(),
                         Type = device["InterfaceType"]?.ToString().Trim(),
                         Serial = device["SerialNumber"]?.ToString().Trim()
-
                     };
 
                     #endregion
@@ -108,9 +107,9 @@ namespace Krugertech.IO.Smart.Controllers
                                 bool failureImminent = (flags & 0x1) == 0x1;
                                 //bool onlineDataCollection = (flags & 0x2) == 0x2;
 
-                                int value = bytes[i * 12 + 5];
-                                int worst = bytes[i * 12 + 6];
-                                int vendordata = BitConverter.ToInt32(bytes, i * 12 + 7);
+                                uint value = bytes[i * 12 + 5];
+                                uint worst = bytes[i * 12 + 6];
+                                uint vendordata = BitConverter.ToUInt32(bytes, i * 12 + 7);
                                 if (id == 0) continue;
 
                                 var attr = drive.SmartAttributes.GetAttribute(id);
@@ -140,7 +139,7 @@ namespace Krugertech.IO.Smart.Controllers
                             try
                             {
                                 int id = bytes[i * 12 + 2];
-                                int thresh = bytes[i * 12 + 3];
+                                uint thresh = bytes[i * 12 + 3];
                                 if (id == 0) continue;
 
                                 var attr = drive.SmartAttributes.GetAttribute(id);

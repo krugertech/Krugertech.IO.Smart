@@ -41,10 +41,10 @@ namespace Krugertech.IO.Smart
         public int Register { get; set; }
         public string Name { get; set; }
 
-        public int Current { get; set; }
-        public int Worst { get; set; }
-        public int Threshold { get; set; }
-        public int Data { get; set; }
+        public uint Current { get; set; }
+        public uint Worst { get; set; }
+        public uint Threshold { get; set; }
+        public uint Data { get; set; }
         public bool IsOK { get; set; }
 
         public bool HasData
